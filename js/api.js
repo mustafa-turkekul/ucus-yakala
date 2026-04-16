@@ -10,6 +10,7 @@ const AmadeusAPI = (() => {
     { iata: 'ESB', name: 'Esenboğa Airport',             city: 'Ankara',        country: 'Turkey' },
     { iata: 'ADB', name: 'Adnan Menderes Airport',       city: 'Izmir',         country: 'Turkey' },
     { iata: 'AYT', name: 'Antalya Airport',              city: 'Antalya',       country: 'Turkey' },
+    { iata: 'ADA', name: 'Adana Çukurova Airport',       city: 'Adana',         country: 'Turkey' },
     { iata: 'LHR', name: 'Heathrow Airport',             city: 'London',        country: 'United Kingdom' },
     { iata: 'LGW', name: 'Gatwick Airport',              city: 'London',        country: 'United Kingdom' },
     { iata: 'CDG', name: 'Charles de Gaulle Airport',    city: 'Paris',         country: 'France' },

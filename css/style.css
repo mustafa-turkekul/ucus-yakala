@@ -315,6 +315,151 @@ main { padding: 2.5rem 0 4rem; }
 .section-header h2 { font-size: 1.25rem; font-weight: 700; }
 .section-subtitle { font-size: .83rem; color: var(--gray-400); margin-top: .2rem; }
 
+/* ── Adana Featured Card ─────────────────────────────────────────────────── */
+#adana-section { margin-bottom: 1.5rem; }
+
+.adana-card {
+  position: relative;
+  background: linear-gradient(120deg, #7c2d12 0%, #c2410c 40%, #ea580c 70%, #f97316 100%);
+  border-radius: 20px;
+  padding: 2rem 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 8px 32px rgba(194,65,12,.35);
+}
+.adana-card:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(194,65,12,.45); }
+.adana-card:focus { outline: 3px solid #fed7aa; outline-offset: 3px; }
+
+/* Decorative background shape */
+.adana-bg-decor {
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.07);
+  pointer-events: none;
+}
+.adana-bg-decor::after {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: -40px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.05);
+}
+
+/* Left side */
+.adana-left { display: flex; flex-direction: column; gap: .6rem; flex: 1; min-width: 0; color: var(--white); }
+
+.adana-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  background: rgba(255,255,255,.18);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,.25);
+  color: var(--white);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: .3rem .75rem;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.adana-title { display: flex; flex-direction: column; gap: .15rem; }
+.adana-city {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 900;
+  letter-spacing: -.5px;
+  line-height: 1;
+  color: var(--white);
+}
+.adana-sub { font-size: .82rem; color: rgba(255,255,255,.7); }
+
+.adana-route {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-top: .2rem;
+}
+.adana-iata {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: .05em;
+  background: rgba(255,255,255,.2);
+  padding: .25rem .6rem;
+  border-radius: 7px;
+  color: var(--white);
+}
+.adana-arrow {
+  font-size: .85rem;
+  color: rgba(255,255,255,.6);
+  letter-spacing: 2px;
+  flex: 1;
+}
+
+.adana-desc {
+  font-size: .85rem;
+  color: rgba(255,255,255,.8);
+  max-width: 380px;
+  line-height: 1.5;
+}
+.adana-desc strong { color: var(--white); }
+
+/* Right side */
+.adana-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.adana-price-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 14px;
+  padding: 1rem 1.5rem;
+}
+.adana-from { font-size: .7rem; color: rgba(255,255,255,.65); text-transform: uppercase; letter-spacing: .06em; }
+.adana-price { font-size: 2.4rem; font-weight: 900; color: var(--white); line-height: 1; letter-spacing: -1px; }
+.adana-per { font-size: .7rem; color: rgba(255,255,255,.65); }
+
+.adana-btn {
+  background: var(--white);
+  color: #c2410c;
+  border: none;
+  border-radius: 10px;
+  padding: .65rem 1.4rem;
+  font-size: .9rem;
+  font-weight: 800;
+  transition: background var(--transition), transform var(--transition);
+  white-space: nowrap;
+}
+.adana-btn:hover { background: #fff7ed; transform: translateY(-1px); }
+
+/* Adana responsive */
+@media (max-width: 640px) {
+  .adana-card { flex-direction: column; align-items: flex-start; padding: 1.5rem; }
+  .adana-right { width: 100%; flex-direction: row; justify-content: space-between; align-items: center; }
+  .adana-price-wrap { flex-direction: row; gap: .4rem; align-items: baseline; padding: .6rem 1rem; }
+  .adana-price { font-size: 1.8rem; }
+  .adana-city { font-size: 1.75rem; }
+  .adana-arrow { display: none; }
+}
+
 /* ── Dashboard Grid ──────────────────────────────────────────────────────── */
 .dest-grid {
   display: grid;

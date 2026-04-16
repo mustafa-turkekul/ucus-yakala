@@ -120,10 +120,77 @@ const Dashboard = (() => {
     setTimeout(() => form?.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })), 600);
   }
 
+  // ── Adana Featured Card ────────────────────────────────────────────────
+  function _renderAdanaFeatured() {
+    const container = document.getElementById('adana-featured');
+    if (!container) return;
+
+    // Generate deterministic mock price for IST→ADA
+    const rand = _seededRand ? _seededRand(_hashStr('ISTADA' + new Date().toDateString())) : null;
+    const price = rand ? Math.round(45 + rand() * 40) : 59;
+    const daysAhead = rand ? 3 + Math.floor(rand() * 14) : 7;
+    const depDate = new Date();
+    depDate.setDate(depDate.getDate() + daysAhead);
+    const formattedDate = depDate.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' });
+    const isoDate = depDate.toISOString().split('T')[0];
+
+    container.innerHTML = `
+      <article class="adana-card" role="button" tabindex="0"
+        data-origin="IST"
+        data-dest="ADA"
+        data-dest-label="Adana (ADA)"
+        data-date="${isoDate}">
+
+        <div class="adana-bg-decor"></div>
+
+        <div class="adana-left">
+          <div class="adana-badge">🔥 Öne Çıkan Uçuş</div>
+          <div class="adana-title">
+            <span class="adana-city">Adana</span>
+            <span class="adana-sub">Çukurova Havalimanı · ADA</span>
+          </div>
+          <div class="adana-route">
+            <span class="adana-iata">IST</span>
+            <span class="adana-arrow">✈ ──────</span>
+            <span class="adana-iata">ADA</span>
+          </div>
+          <p class="adana-desc">Seyahat tarihinden itibaren <strong>${formattedDate}</strong> kalkışlı uçuşlar mevcut. Fırsatı kaçırma!</p>
+        </div>
+
+        <div class="adana-right">
+          <div class="adana-price-wrap">
+            <span class="adana-from">itibaren</span>
+            <span class="adana-price">$${price}</span>
+            <span class="adana-per">kişi başı</span>
+          </div>
+          <button class="adana-btn" type="button">Uçuşları Gör →</button>
+        </div>
+
+      </article>`;
+
+    const card = container.querySelector('.adana-card');
+    const trigger = () => _prefillSearch(card);
+    card.addEventListener('click', trigger);
+    card.addEventListener('keydown', e => { if (e.key === 'Enter') trigger(); });
+    container.querySelector('.adana-btn').addEventListener('click', e => { e.stopPropagation(); trigger(); });
+  }
+
+  // Tiny helpers reused from mock api scope — safe to duplicate here
+  function _seededRand(seed) {
+    let s = seed;
+    return () => { s = (s * 1664525 + 1013904223) & 0xffffffff; return (s >>> 0) / 0xffffffff; };
+  }
+  function _hashStr(str) {
+    let h = 0;
+    for (let i = 0; i < str.length; i++) h = Math.imul(31, h) + str.charCodeAt(i) | 0;
+    return Math.abs(h);
+  }
+
   async function load(origin = 'IST') {
     const container = document.getElementById('dashboard-grid');
     if (!container) return;
 
+    _renderAdanaFeatured();
     _renderSkeletons(container);
 
     // Try cache first
