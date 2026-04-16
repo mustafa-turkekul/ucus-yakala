@@ -40,7 +40,7 @@ input, select { font-family: inherit; }
 .site-header {
   background:
     linear-gradient(135deg, rgba(15,36,96,.82) 0%, rgba(30,58,138,.75) 40%, rgba(37,99,235,.65) 100%),
-    url('../assets/hero-bg.jpg') center center / 70% auto no-repeat;
+    url('../assets/hero-bg.jpg') center center / 50% auto no-repeat;
   color: var(--white);
   padding: 1.5rem 0 6rem;
   position: relative;
