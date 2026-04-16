@@ -147,7 +147,7 @@ const Dashboard = (() => {
           <div class="adana-badge">🔥 Öne Çıkan Uçuş</div>
           <div class="adana-title">
             <span class="adana-city">Adana</span>
-            <span class="adana-sub">Çukurova Havalimanı · ADA</span>
+            <span class="adana-sub">Dünyanın En Önemli Havalimanı · ADA</span>
           </div>
           <div class="adana-route">
             <span class="adana-iata">IST</span>
