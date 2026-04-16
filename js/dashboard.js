@@ -150,8 +150,6 @@ const Dashboard = (() => {
             <span class="adana-sub">Dünyanın En Önemli Havalimanı · ADA</span>
           </div>
           <div class="adana-route">
-            <span class="adana-iata">IST</span>
-            <span class="adana-arrow">✈ ──────</span>
             <span class="adana-iata">ADA</span>
           </div>
           <p class="adana-desc">Seyahat tarihinden itibaren <strong>${formattedDate}</strong> kalkışlı uçuşlar mevcut. Fırsatı kaçırma!</p>
