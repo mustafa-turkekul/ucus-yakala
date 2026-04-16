@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Uçuş fiyatlarını karşılaştır, en ucuz bileti yakala. Uçuş Yakala ile havayolu fırsatlarını kaçırma." />
+  <title>Uçuş Yakala — En Ucuz Uçuş Biletleri</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Header / Hero ──────────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="site-nav">
+        <div class="logo">
+          <div class="logo-plane">✈</div>
+          <div class="logo-text-wrap">
+            <span class="logo-brand">Uçuş <em>Yakala</em></span>
+          </div>
+        </div>
+        <div class="nav-badge">Demo</div>
+      </nav>
+
+      <div class="hero-content">
+        <h1 class="hero-title">
+          En ucuz uçuşu<br />
+          <span class="hero-highlight">hemen yakala.</span>
+        </h1>
+        <p class="hero-sub">Yüzlerce havayolunu tek ekranda karşılaştır, en iyi fiyata uç.</p>
+
+        <!-- Stats strip -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">50+</span>
+            <span class="stat-label">Havalimanı</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-item">
+            <span class="stat-num">18</span>
+            <span class="stat-label">Havayolu</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-item">
+            <span class="stat-num">%100</span>
+            <span class="stat-label">Ücretsiz</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Search Card ────────────────────────────────────────────────────── -->
+  <div class="search-wrapper">
+    <div class="container">
+      <div class="search-card">
+
+        <!-- Tab row -->
+        <div class="search-tabs">
+          <button class="tab-btn active" type="button">✈ Tek Yön</button>
+          <span class="tab-hint">Çift yön yakında</span>
+        </div>
+
+        <!-- Error banner -->
+        <div id="error-banner" class="error-banner" hidden role="alert"></div>
+
+        <form id="search-form" class="search-form" novalidate>
+
+          <!-- Origin -->
+          <div class="field-group">
+            <label for="origin-input">Nereden</label>
+            <div class="input-wrap">
+              <span class="input-icon">🛫</span>
+              <input
+                type="text"
+                id="origin-input"
+                placeholder="İstanbul (IST)"
+                autocomplete="off"
+                aria-autocomplete="list"
+                aria-controls="origin-dropdown"
+                aria-label="Kalkış havalimanı"
+              />
+              <input type="hidden" id="origin-code" />
+              <button type="button" class="input-clear" aria-label="Temizle"
+                data-target="origin-input" data-hidden="origin-code" data-dropdown="origin-dropdown">✕</button>
+              <ul id="origin-dropdown" class="airport-dropdown" role="listbox" hidden></ul>
+            </div>
+          </div>
+
+          <!-- Swap button -->
+          <button type="button" class="swap-btn" id="swap-btn" aria-label="Kalkış ve varış değiştir">⇄</button>
+
+          <!-- Destination -->
+          <div class="field-group">
+            <label for="dest-input">Nereye</label>
+            <div class="input-wrap">
+              <span class="input-icon">🛬</span>
+              <input
+                type="text"
+                id="dest-input"
+                placeholder="Londra (LHR)"
+                autocomplete="off"
+                aria-autocomplete="list"
+                aria-controls="dest-dropdown"
+                aria-label="Varış havalimanı"
+              />
+              <input type="hidden" id="dest-code" />
+              <button type="button" class="input-clear" aria-label="Temizle"
+                data-target="dest-input" data-hidden="dest-code" data-dropdown="dest-dropdown">✕</button>
+              <ul id="dest-dropdown" class="airport-dropdown" role="listbox" hidden></ul>
+            </div>
+          </div>
+
+          <!-- Date -->
+          <div class="field-group field-group--sm">
+            <label for="date-input">Tarih</label>
+            <div class="input-wrap">
+              <span class="input-icon">📅</span>
+              <input type="date" id="date-input" aria-label="Kalkış tarihi" />
+            </div>
+          </div>
+
+          <!-- Adults -->
+          <div class="field-group field-group--xs">
+            <label for="adults-input">Yolcu</label>
+            <div class="input-wrap">
+              <span class="input-icon">👤</span>
+              <select id="adults-input" aria-label="Yolcu sayısı">
+                <option value="1">1 Kişi</option>
+                <option value="2">2 Kişi</option>
+                <option value="3">3 Kişi</option>
+                <option value="4">4 Kişi</option>
+                <option value="5">5 Kişi</option>
+                <option value="6">6 Kişi</option>
+                <option value="7">7 Kişi</option>
+                <option value="8">8 Kişi</option>
+                <option value="9">9 Kişi</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="search-btn">
+            <span>Uçuş Ara</span>
+            <span class="btn-arrow">→</span>
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Main ───────────────────────────────────────────────────────────── -->
+  <main>
+    <div class="container">
+
+      <!-- Results Section -->
+      <section id="results-section" class="section" hidden>
+        <div class="results-header">
+          <div>
+            <h2 id="results-title">Uçuş Sonuçları</h2>
+            <p id="results-count" class="results-count"></p>
+          </div>
+          <div id="sort-bar" class="sort-bar" hidden>
+            <span class="sort-label">Sırala:</span>
+            <button class="sort-btn active" data-sort="price">En Ucuz</button>
+            <button class="sort-btn" data-sort="duration">En Kısa</button>
+            <button class="sort-btn" data-sort="departure">En Erken</button>
+          </div>
+        </div>
+        <div id="results-container" class="results-list"></div>
+      </section>
+
+      <!-- Popular Routes Dashboard -->
+      <section class="section" id="dashboard-section">
+        <div class="section-header">
+          <div>
+            <h2>İstanbul'dan Popüler Rotalar</h2>
+            <p class="section-subtitle">Şu an en ucuz biletler</p>
+          </div>
+        </div>
+        <div id="dashboard-grid" class="dest-grid"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-logo">✈ Uçuş Yakala</span>
+          <span class="footer-sep">·</span>
+          <span>Fiyatlar tahmini olup değişiklik gösterebilir.</span>
+        </div>
+        <p class="footer-copy">&copy; <span id="year"></span> Uçuş Yakala. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/dashboard.js"></script>
+
+  <!-- Swap button logic -->
+  <script>
+    document.getElementById('swap-btn').addEventListener('click', () => {
+      const oi = document.getElementById('origin-input');
+      const oc = document.getElementById('origin-code');
+      const di = document.getElementById('dest-input');
+      const dc = document.getElementById('dest-code');
+      [oi.value, di.value] = [di.value, oi.value];
+      [oc.value, dc.value] = [dc.value, oc.value];
+    });
+  </script>
+</body>
+</html>
