@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mustafa-turkekul.github.io/ucus-yakala/sitemap.xml
